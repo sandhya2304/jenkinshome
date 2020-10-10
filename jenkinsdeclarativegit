@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+    environment{
+       PATH = "/opt/maven3/bin:$PATH"
+    }
+        stages{
+            stage("Git checkout"){
+                steps{
+                   git credentialsId: 'da75b4f3-77f4-4e95-a887-02538c7cac9a', url: 'https://github.com/sandhya2304/jenkinsdockersample'
+                } 
+            }
+             stage("Maven Build"){
+                steps{
+                   sh "mvn clean package"
+                } 
+            }
+         
+        }
+}
